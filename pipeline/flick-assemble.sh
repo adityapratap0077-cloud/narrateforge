@@ -5,16 +5,14 @@
 #   1. concatenate scene MP4s in transcript order (no re-render)
 #   2. build the continuous VO track (adelay each take to its segment start)
 #   3. mix VO over the scene audio (SFX dropped to a supporting level)
-#   4. burn captions
 #
-# Usage: ./flick-assemble.sh <flick-output-dir> <scene-list.txt> <captions.ass> <final.mp4>
+# Usage: ./flick-assemble.sh <flick-output-dir> <scene-list.txt> <final.mp4>
 #
 #   flick-output-dir: flick run dir with scenes/<name>/<name>.mp4 and
 #                     voice/<segment-id>.mp3 (or voice/lineN.mp3)
 #   scene-list.txt  : one line per scene, in transcript order:
 #                     "<scene-name> <start_sec> <end_sec> <voice-file>"
 #                     e.g.  "github-printed-hook 0.0 5.5 github-printed-hook.mp3"
-#   captions.ass    : Dialogue events timed to segment start → start + take
 #   final.mp4       : narrated deliverable
 #
 # VO takes come from the transcript segments (one per segment, spoken form,
@@ -26,10 +24,9 @@
 
 set -euo pipefail
 
-FOUT="${1:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <captions.ass> <final.mp4}"
-LIST="${2:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <captions.ass> <final.mp4}"
-ASS="${3:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <captions.ass> <final.mp4}"
-FINAL="${4:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <captions.ass> <final.mp4}"
+FOUT="${1:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <final.mp4}"
+LIST="${2:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <final.mp4}"
+FINAL="${3:?usage: flick-assemble.sh <flick-output-dir> <scene-list.txt> <final.mp4}"
 
 command -v ffmpeg >/dev/null || { echo "ffmpeg not found"; exit 1; }
 
@@ -56,11 +53,8 @@ done < "$LIST"
 filter="$filter$mix amix=inputs=$n:normalize=0[vo]"
 ffmpeg -y "${inputs[@]}" -filter_complex "$filter" -map "[vo]" "$FOUT/voice-track.m4a"
 
-# 3. mix: scene audio (SFX) at 0.45 under the VO
+# 3. mix: scene audio (SFX) at 0.45 under the VO — this is the final
 ffmpeg -y -i "$FOUT/scenes-concat.mp4" -i "$FOUT/voice-track.m4a" -filter_complex \
   "[0:a]volume=0.45[sfx]; [1:a]volume=1.0[vo]; [sfx][vo]amix=inputs=2:normalize=0[a]" \
-  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 160k "$FOUT/mixed.mp4"
-
-# 4. burn captions
-./captions.sh "$FOUT/mixed.mp4" "$ASS" "$FINAL"
+  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 160k "$FINAL"
 echo "narrated video: $FINAL"

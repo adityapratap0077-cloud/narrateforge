@@ -1,7 +1,7 @@
 # Narrated mode (`--narrated`)
 
-Opt-in voiceover + burned-in captions. A plain `/brag` run never uses this:
-no VO, no captions, unless the invocation contains `--narrated` (the older
+Opt-in voiceover. A plain `/brag` run never uses this:
+no VO unless the invocation contains `--narrated` (the older
 `--voice` flag is kept as an alias and behaves identically).
 
 Narration follows the vox-animation discipline: N timed lines, one per
@@ -62,7 +62,7 @@ Check every take with ffprobe against its scene's duration:
 - Take **shorter than 60% of the scene** → consider `--speed 90` or
   lengthening the line. Otherwise fine — the line lands at the scene start
   and the visuals breathe after it.
-- Record final durations in the plan; they drive caption timing.
+- Record final durations in the plan; they drive the VO placement.
 
 ## 3. Wire VO into the composition
 
@@ -83,26 +83,7 @@ usual 0.3–0.4). No sidechain plugins — the static low bed plus a clear VO
 is the intended mix. Keep SFX sparse under narration; drop any SFX that
 fights the voice.
 
-## 4. Burn captions after render
-
-Captions are burned into the rendered MP4 with ffmpeg libass — never
-rendered as HTML text (they must survive any player).
-
-1. Write `<output-dir>/captions.ass` with one Dialogue event per narration
-   line, timed to the fit-checked VO placement.
-2. **PlayRes must match the video resolution** or libass scales the fonts
-   wrong (the classic "gigantic captions" bug):
-   `PlayResX: 1080` / `PlayResY: 1920` for vertical, `1920`/`1080` for
-   landscape.
-3. Style: bottom-centered, ~64px font at 1080p (scale proportionally),
-   1–2 lines, max ~42 chars/line for 9:16, high-contrast
-   (white on semi-transparent black).
-4. Burn: `ffmpeg -i brag.mp4 -vf "subtitles=captions.ass" -c:a copy brag-narrated.mp4`
-
-Keep captions verbatim to the voiced lines (they're the accessibility
-track), even where the narration deliberately differs from on-screen text.
-
-## 5. Delivery
+## 4. Delivery
 
 - `<output-dir>/brag-narrated.mp4` is the narrated deliverable (in addition
   to the normal `brag.mp4` — always render the clean version too).
@@ -116,5 +97,3 @@ track), even where the narration deliberately differs from on-screen text.
   bounded backoff). Never swap voices or engines to work around a failure.
 - A take that won't fit after speed + rewrite → split the scene or cut the
   line harder. The scene timing is the boss, not the script.
-- Caption timing drift → re-derive Dialogue times from the final
-  `data-start` + fit-checked durations, not from the plan draft.

@@ -12,9 +12,9 @@ Turn a transcript into original scene animations.
 Recognize `/flick` in Claude Code and `$flick` in Codex. Flick runs transcription, planning, Remotion building, preview, revision, and reusable-animation saving in one workflow.
 
 **Narrated mode (opt-in):** if the invocation contains `--narrated` (or the
-user asks for narration/captions in that run), voice the transcript lines
-and burn captions per [references/narrated.md](references/narrated.md). A
-plain `/flick` run never adds VO or captions — scenes render with
+user asks for narration in that run), voice the transcript lines
+per [references/narrated.md](references/narrated.md). A
+plain `/flick` run never adds VO — scenes render with
 action-matched SFX only, and no background music, exactly as today.
 
 ## What this skill does
@@ -149,7 +149,7 @@ After the scenes are accepted, run the narrated pipeline from
 [references/narrated.md](references/narrated.md): voice each transcript
 segment with the `tts` skill, fit-check every take against its scene
 duration, assemble the VO track, mix it over the scene audio (SFX dropped
-to a supporting level), and burn the transcript in as captions with libass.
+to a supporting level).
 Deliver `<output-dir>/<name>-narrated.mp4`; the clean scenes are untouched.
 
 After the final delivery, add:

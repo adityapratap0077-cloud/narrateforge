@@ -55,12 +55,12 @@ Parse these options:
 | `--voice` | flag (legacy alias) | narration off |
 | `--narrated` | flag | narration off |
 
-`--narrated` is the narrated-mode flag: voiceover + burned-in captions,
+`--narrated` is the narrated-mode flag: voiceover,
 opt-in per run. `--voice` is kept as a legacy alias and behaves identically.
 When narrated mode is on, follow [references/narrated.md](references/narrated.md):
 write one timed narration line per scene in the plan, voice each line with the
-`tts` skill, fit-check every take against its scene, duck the music bed, and
-burn captions with libass. Never use edge-tts or Piper.
+`tts` skill, fit-check every take against its scene, and duck the music bed.
+Never use edge-tts or Piper.
 
 Tone can be a preset (`default`, `polished`, `yc-parody`, `chaotic`, `deadpan`, `cinematic`, `app-store`) or a creative direction such as "fake Series A launch from 2016", "museum exhibit", or "overproduced mobile game ad".
 
@@ -144,8 +144,8 @@ Write the composition brief and use Hyperframes to create the video implementati
 Validate, preview, render to `<output-dir>/brag.mp4`, pick the best poster frame into `<output-dir>/brag.jpg`, bake that poster as the video's frame 0 so it's the idle thumbnail everywhere, and write `<output-dir>/share-copy.txt`.
 
 When `--narrated` is on: voice the narration lines, fit-check takes,
-wire VO into the composition with the music bed ducked, render, then burn
-captions — deliver `<output-dir>/brag-narrated.mp4` alongside the clean
+wire VO into the composition with the music bed ducked, render —
+deliver `<output-dir>/brag-narrated.mp4` alongside the clean
 `brag.mp4`. Full pipeline: [references/narrated.md](references/narrated.md).
 
 **Gate:** `<output-dir>/brag.mp4` exists. A best-frame poster `<output-dir>/brag.jpg` is picked (not an arbitrary frame) and baked as frame 0 of `brag.mp4`. Share copy is written.

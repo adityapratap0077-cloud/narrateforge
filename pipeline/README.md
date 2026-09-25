@@ -1,9 +1,9 @@
 # NarrateForge pipeline
 
 The end-to-end recipe for a **narrated promo video**: an animated visual
-track + a fit-checked TTS voiceover + a ducked music/SFX bed + burned-in
-captions. This is the generalized form of the pipeline proven by the two
-reference demos in `examples/`.
+track + a fit-checked TTS voiceover + a ducked music/SFX bed. No captions —
+narrated mode is voiceover only. This is the generalized form of the
+pipeline proven by the two reference demos in `examples/`.
 
 ## The video type
 
@@ -11,8 +11,7 @@ reference demos in `examples/`.
   composition (brag-style, reads a project site) or Remotion scene
   animations (flick-style, from a transcript).
 - **Audio:** one narration line per scene, voiced with TTS and timed to
-  its scene; music/SFX ducked underneath; captions burned into the video
-  (never rendered as HTML text — they must survive any player).
+  its scene; music/SFX ducked underneath.
 
 ## Stages
 
@@ -20,10 +19,9 @@ reference demos in `examples/`.
 1. write-narration.md     → one timed line per scene (prompt template)
 2. tts-lines.sh           → voice each line (one mp3 per line)
 3. fit-check.sh           → ffprobe each take against its scene window
-4. compose-hyperframes.sh → brag-style: render composition, mix VO, captions
+4. compose-hyperframes.sh → brag-style: render composition, mix VO → final
    OR
-   flick-assemble.sh      → flick-style: concat scenes, mix VO, captions
-5. captions.sh            → burn .ass captions with libass (PlayRes gotcha!)
+   flick-assemble.sh      → flick-style: concat scenes, mix VO → final
 ```
 
 ### 1. Narration script — `write-narration.md`
@@ -64,7 +62,7 @@ For Hyperframes compositions (the `/brag` skill path):
    audio from the composition directory).
 3. Ducking: keep the music bed at **0.18–0.22** for the whole narrated
    video (vs 0.3–0.4 normally); keep SFX sparse under narration.
-4. Render clean → mix VO over → `captions.sh`.
+4. Render clean → mix VO over → final mp4.
 
 Full spec: `skills/brag/references/narrated.md`.
 
@@ -76,24 +74,9 @@ never rebuilt for narration:
 1. Concatenate scene MP4s in transcript order.
 2. Build one continuous VO track: `adelay` each take to its segment
    start, `apad=whole_dur=<total>` so nothing gets cut.
-3. Mix: scene audio (action SFX) at 0.45 under the VO.
-4. `captions.sh`.
+3. Mix: scene audio (action SFX) at 0.45 under the VO → final mp4.
 
 Full spec: `skills/flick/references/narrated.md`.
-
-### 5. Captions — `captions.sh`
-
-```bash
-./captions.sh <video.mp4> <captions.ass> <final.mp4>
-```
-
-Burns the `.ass` with ffmpeg libass. **The PlayRes gotcha:** libass
-scales fonts by PlayRes — `PlayResX`/`PlayResY` must match the video
-resolution (1080×1920 for 9:16, 1920×1080 for 16:9) or captions render
-gigantic. Caption style: bottom-centered, ~64px at 1080p, 1–2 lines,
-≤ ~42 chars/line for 9:16, white on semi-transparent black, verbatim to
-the voiced lines. See `examples/captions-flick.ass` and
-`examples/captions-brag.ass` for real files.
 
 ## What the scripts assume
 
@@ -105,4 +88,4 @@ the voiced lines. See `examples/captions-flick.ass` and
   Remotion, bundled FFmpeg, Whisper, yt-dlp).
 
 Demo-specific values (scene names, durations, music choice) are examples —
-adapt `scene-list.txt` and the .ass timings to your run.
+adapt `scene-list.txt` to your run.

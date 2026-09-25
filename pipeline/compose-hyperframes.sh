@@ -4,16 +4,14 @@
 # Assembles a Hyperframes composition into the narrated deliverable:
 #   1. render the clean composition (music bed + SFX, no VO)
 #   2. mix fit-checked voice takes over the render, music bed ducked
-#   3. burn captions
 #
-# Usage: ./compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4>
+# Usage: ./compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <final.mp4>
 #
 #   output-dir    : brag-style run dir with voice/lineN.mp3 takes and a
 #                   composition/ rendered via Hyperframes
 #   scene-list.txt: one line per scene: "<start_sec> <end_sec>"
 #   music.mp3     : music bed (already used in the composition at 0.18–0.22
 #                   for narrated runs — see skills/brag/references/narrated.md)
-#   captions.ass  : Dialogue events timed to VO placement
 #   final.mp4     : narrated deliverable
 #
 # In the Hyperframes composition, wire each VO take as its own <audio>
@@ -32,11 +30,10 @@
 
 set -euo pipefail
 
-OUT="${1:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4}"
-LIST="${2:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4}"
-MUSIC="${3:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4}"
-ASS="${4:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4}"
-FINAL="${5:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <captions.ass> <final.mp4}"
+OUT="${1:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <final.mp4}"
+LIST="${2:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <final.mp4}"
+MUSIC="${3:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <final.mp4}"
+FINAL="${4:?usage: compose-hyperframes.sh <output-dir> <scene-list.txt> <music.mp3> <final.mp4}"
 
 command -v ffmpeg >/dev/null || { echo "ffmpeg not found"; exit 1; }
 command -v npx >/dev/null || { echo "npx not found (needs Hyperframes)"; exit 1; }
@@ -62,11 +59,8 @@ for k in $(seq 0 $((n-1))); do mix="$mix[a$k]"; done
 filter="$filter$mix amix=inputs=$n:normalize=0[vo]"
 ffmpeg -y "${inputs[@]}" -filter_complex "$filter" -map "[vo]" "$OUT/voice-track.m4a"
 
-# 3. mix: clean render audio (music+SFX) under the VO
+# 3. mix: clean render audio (music+SFX) under the VO — this is the final
 ffmpeg -y -i "$OUT/render-clean.mp4" -i "$OUT/voice-track.m4a" -filter_complex \
   "[0:a]volume=0.9[sfx]; [1:a]volume=1.0[vo]; [sfx][vo]amix=inputs=2:normalize=0[a]" \
-  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 160k "$OUT/mixed.mp4"
-
-# 4. burn captions
-./captions.sh "$OUT/mixed.mp4" "$ASS" "$FINAL"
+  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 160k "$FINAL"
 echo "narrated video: $FINAL"
