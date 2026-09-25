@@ -2,7 +2,7 @@
 
 **Make the narrated promo video.** A short animated video with a
 fit-checked TTS voiceover and a ducked music/SFX bed — no captions —
-the exact recipe proven by the two reference cuts in
+the exact recipe proven by the three reference cuts in
 [`examples/`](#examples).
 
 ## The video type
@@ -14,6 +14,28 @@ the exact recipe proven by the two reference cuts in
 | **Visual** | Animated scenes — Hyperframes composition (brag-style, reads a project) or Remotion scene animations (flick-style, from a transcript) |
 | **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene — narration never bleeds into the next scene |
 | **Mix** | Music/SFX ducked underneath the voice (bed at 0.18–0.22, SFX at a supporting level) |
+
+## Samples — which skill makes what
+
+| Command | Skill | What you get |
+|---|---|---|
+| `/narrate <site>` | `skills/narrate/` | Brag-style narrated promo — the easiest command; narration, voiceover, ducked music |
+| `/brag --narrated` | `skills/brag/` + `references/narrated.md` | Same brag-style engine, invoked through `/brag` |
+| `/flick --narrated` | `skills/flick/` + `references/narrated.md` | Remotion scene animations voiced from a transcript |
+
+**`/narrate` → BanaoBot** (20.5s) — *"Your customers live on WhatsApp. Your business should answer there."*
+
+<video src="examples/banaobot-narrated-9x16.mp4" width="270" controls></video>
+
+**`/brag --narrated` → PortfolioForge** (18.0s) — 3-scene Hyperframes composition, narration over a ducked music bed.
+
+<video src="examples/portfolioforge-brag-narrated-9x16.mp4" width="270" controls></video>
+
+**`/flick --narrated` → PortfolioForge** (24.2s) — 4 Remotion scenes, transcript voiced over action-matched SFX.
+
+<video src="examples/portfolioforge-flick-narrated-9x16.mp4" width="270" controls></video>
+
+All samples are 1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth".
 
 ## Pipeline overview
 
@@ -81,12 +103,15 @@ The skills this pipeline was built from, copied faithfully:
 
 ## Examples
 
-Both are 1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth":
+All three reference cuts (1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth") —
+see [Samples](#samples--which-skill-makes-what) above for embedded playback:
 
-- `examples/portfolioforge-flick-narrated-9x16.mp4` (24.2s) — flick-style:
+- `examples/banaobot-narrated-9x16.mp4` (20.5s) — `/narrate` on BanaoBot:
+  brag-style, 4 scenes, voiceover + ducked music, no captions.
+- `examples/portfolioforge-brag-narrated-9x16.mp4` (18.0s) — `/brag --narrated`:
+  3-scene Hyperframes composition for PortfolioForge, narration with music bed ducked to 0.2.
+- `examples/portfolioforge-flick-narrated-9x16.mp4` (24.2s) — `/flick --narrated`:
   4 Remotion scenes for PortfolioForge, VO over action SFX.
-- `examples/portfolioforge-brag-narrated-9x16.mp4` (18.0s) — brag-style:
-  3-scene Hyperframes composition, narration with music bed ducked to 0.2.
 
 ## Repo layout
 
@@ -102,11 +127,12 @@ narrateforge/
     flick-assemble.sh  # flick-style assembly
     README.md          # stage-by-stage pipeline docs
   skills/              # the skills this pipeline is built from
+    narrate/           # /narrate — the easy command
     brag/              # /brag + narrated.md + audio.md
     flick/             # /flick + narrated.md
     vox-animation/     # narration model + assemble.sh
     tts-interface.md   # bring-your-own-TTS adapter doc
-  examples/            # the two reference narrated cuts
+  examples/            # the three reference narrated cuts
 ```
 
 ## License
