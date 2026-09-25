@@ -1,0 +1,24 @@
+# build outputs
+*.mp4
+!examples/*.mp4
+*.m4a
+*.wav
+voice/
+render-clean.mp4
+mixed.mp4
+scenes-concat.mp4
+voice-track.m4a
+concat.txt
+
+# working dirs
+brag-output*/
+flick-output*/
+projects/
+node_modules/
+.next/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
