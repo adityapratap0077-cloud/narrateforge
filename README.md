@@ -9,9 +9,11 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Samples](https://img.shields.io/badge/samples-3-blue.svg)](#-which-skill-makes-what)
 
-<video src="examples/banaobot-narrated-9x16.mp4" poster="examples/poster-banaobot.jpg" width="320" controls></video>
+<div align="center">
 
-*☝️ Made with `/narrate` — BanaoBot · 20.5s*
+[![BanaoBot narrated promo — click to watch full video](examples/preview-banaobot.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/banaobot-narrated-9x16.mp4)
+
+*☝️ Made with `/narrate` — BanaoBot · 20.5s · click to watch with sound*
 *"Your customers live on WhatsApp. Your business should answer there."*
 
 </div>
@@ -30,11 +32,11 @@
 
 **`/brag --narrated` → PortfolioForge** · 18.0s — 3-scene Hyperframes composition, narration over a ducked music bed.
 
-<video src="examples/portfolioforge-brag-narrated-9x16.mp4" poster="examples/poster-brag.jpg" width="270" controls></video>
+[![PortfolioForge brag narrated — click to watch full video](examples/preview-brag.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-brag-narrated-9x16.mp4)
 
 **`/flick --narrated` → PortfolioForge** · 24.2s — 4 Remotion scenes, transcript voiced over action-matched SFX.
 
-<video src="examples/portfolioforge-flick-narrated-9x16.mp4" poster="examples/poster-flick.jpg" width="270" controls></video>
+[![PortfolioForge flick narrated — click to watch full video](examples/preview-flick.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-flick-narrated-9x16.mp4)
 
 *All samples 1080×1920 · H.264 + stereo AAC · voice Meta AI "Smooth"*
 
