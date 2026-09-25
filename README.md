@@ -1,33 +1,48 @@
-# NarrateForge
+<div align="center">
 
-**Make the narrated promo video.** A short animated video with a
-fit-checked TTS voiceover and a ducked music/SFX bed — no captions —
-the exact recipe proven by the three reference cuts in
-[`examples/`](#examples).
+# 🎙️ NarrateForge
 
-<video src="examples/banaobot-narrated-9x16.mp4" width="320" controls></video>
+### Make the narrated promo video.
 
-*Made with `/narrate` — BanaoBot, 20.5s. "Your customers live on WhatsApp. Your business should answer there."*
+*Fit-checked TTS voiceover · ducked music & SFX bed · no captions*
 
-## Which skill makes what
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Samples](https://img.shields.io/badge/samples-3-blue.svg)](#-which-skill-makes-what)
+
+<video src="examples/banaobot-narrated-9x16.mp4" poster="examples/poster-banaobot.jpg" width="320" controls></video>
+
+*☝️ Made with `/narrate` — BanaoBot · 20.5s*
+*"Your customers live on WhatsApp. Your business should answer there."*
+
+</div>
+
+---
+
+## 🎬 Which skill makes what
 
 | Command | Skill | What you get |
 |---|---|---|
-| `/narrate <site>` | `skills/narrate/` | Brag-style narrated promo — the easiest command (sample above) |
+| `/narrate <site>` | `skills/narrate/` | ⭐ Brag-style narrated promo — the easiest command (sample above) |
 | `/brag --narrated` | `skills/brag/` + `references/narrated.md` | Same brag-style engine, invoked through `/brag` |
 | `/flick --narrated` | `skills/flick/` + `references/narrated.md` | Remotion scene animations voiced from a transcript |
 
-**`/brag --narrated` → PortfolioForge** (18.0s) — 3-scene Hyperframes composition, narration over a ducked music bed.
+<div align="center">
 
-<video src="examples/portfolioforge-brag-narrated-9x16.mp4" width="270" controls></video>
+**`/brag --narrated` → PortfolioForge** · 18.0s — 3-scene Hyperframes composition, narration over a ducked music bed.
 
-**`/flick --narrated` → PortfolioForge** (24.2s) — 4 Remotion scenes, transcript voiced over action-matched SFX.
+<video src="examples/portfolioforge-brag-narrated-9x16.mp4" poster="examples/poster-brag.jpg" width="270" controls></video>
 
-<video src="examples/portfolioforge-flick-narrated-9x16.mp4" width="270" controls></video>
+**`/flick --narrated` → PortfolioForge** · 24.2s — 4 Remotion scenes, transcript voiced over action-matched SFX.
 
-All samples are 1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth".
+<video src="examples/portfolioforge-flick-narrated-9x16.mp4" poster="examples/poster-flick.jpg" width="270" controls></video>
 
-## The video type
+*All samples 1080×1920 · H.264 + stereo AAC · voice Meta AI "Smooth"*
+
+</div>
+
+---
+
+## 🧩 The video type
 
 | | |
 |---|---|
@@ -37,7 +52,7 @@ All samples are 1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth".
 | **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene — narration never bleeds into the next scene |
 | **Mix** | Music/SFX ducked underneath the voice (bed at 0.18–0.22, SFX at a supporting level) |
 
-## Pipeline overview
+## 🛠️ Pipeline overview
 
 ```
 narration script → TTS takes → fit-check → mix over visuals
@@ -57,7 +72,7 @@ narration script → TTS takes → fit-check → mix over visuals
 
 Full stage-by-stage docs: [`pipeline/README.md`](pipeline/README.md).
 
-## Quickstart
+## 🚀 Quickstart
 
 ```bash
 git clone https://github.com/adityapratap0077-cloud/narrateforge.git
@@ -90,21 +105,22 @@ Requirements: `ffmpeg` + `ffprobe`, a TTS CLI satisfying
 [`skills/tts-interface.md`](skills/tts-interface.md), and Hyperframes
 and/or Remotion for the visual tracks (their skills live in `skills/`).
 
-## Skills included
+## 📦 Skills included
 
 The skills this pipeline was built from, copied faithfully:
 
 | Skill | What it contributes | Source / license |
 |---|---|---|
-| `skills/brag/` | `/brag` — launch video from project code via Hyperframes; `references/narrated.md` is the narrated-mode spec (VO wiring, ducking) | Original work by Aditya Pratap's studio; no separate license — covered by this repo's MIT |
+| `skills/narrate/` | `/narrate` — the easy command for narrated videos | Original work by Aditya Pratap's studio — covered by this repo's MIT |
+| `skills/brag/` | `/brag` — launch video from project code via Hyperframes; `references/narrated.md` is the narrated-mode spec (VO wiring, ducking) | Original work by Aditya Pratap's studio — covered by this repo's MIT |
 | `skills/flick/` | `/flick` — transcript → Remotion scene animations; `references/narrated.md` is the transcript-voicing spec | Upstream [creatorberry/flick](https://github.com/creatorberry/flick) (MIT); local modifications (narrated mode) are this repo's |
-| `skills/vox-animation/` | The narration model: timed lines per scene, fit-check discipline, `assemble.sh` reference | Original studio skill; no separate license — covered by this repo's MIT |
+| `skills/vox-animation/` | The narration model: timed lines per scene, fit-check discipline, `assemble.sh` reference | Original studio skill — covered by this repo's MIT |
 | `skills/tts-interface.md` | Adapter doc for the platform TTS CLI used in the reference runs (not portable, not included) | — |
 
-## Examples
+## 🎞️ Examples
 
 All three reference cuts (1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth") —
-see [Which skill makes what](#which-skill-makes-what) above for embedded playback:
+embedded with posters in [Which skill makes what](#-which-skill-makes-what) above:
 
 - `examples/banaobot-narrated-9x16.mp4` (20.5s) — `/narrate` on BanaoBot:
   brag-style, 4 scenes, voiceover + ducked music, no captions.
@@ -113,7 +129,7 @@ see [Which skill makes what](#which-skill-makes-what) above for embedded playbac
 - `examples/portfolioforge-flick-narrated-9x16.mp4` (24.2s) — `/flick --narrated`:
   4 Remotion scenes for PortfolioForge, VO over action SFX.
 
-## Repo layout
+## 📁 Repo layout
 
 ```
 narrateforge/
@@ -132,9 +148,9 @@ narrateforge/
     flick/             # /flick + narrated.md
     vox-animation/     # narration model + assemble.sh
     tts-interface.md   # bring-your-own-TTS adapter doc
-  examples/            # the three reference narrated cuts
+  examples/            # the three reference narrated cuts + posters
 ```
 
-## License
+## 📄 License
 
 MIT — see [LICENSE](LICENSE).
