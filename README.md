@@ -5,16 +5,6 @@ fit-checked TTS voiceover and a ducked music/SFX bed — no captions —
 the exact recipe proven by the three reference cuts in
 [`examples/`](#examples).
 
-## The video type
-
-| | |
-|---|---|
-| **Length** | 15–25 seconds |
-| **Aspect** | 9:16 vertical (16:9 / 1:1 work too) |
-| **Visual** | Animated scenes — Hyperframes composition (brag-style, reads a project) or Remotion scene animations (flick-style, from a transcript) |
-| **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene — narration never bleeds into the next scene |
-| **Mix** | Music/SFX ducked underneath the voice (bed at 0.18–0.22, SFX at a supporting level) |
-
 ## Samples — which skill makes what
 
 | Command | Skill | What you get |
@@ -36,6 +26,16 @@ the exact recipe proven by the three reference cuts in
 <video src="examples/portfolioforge-flick-narrated-9x16.mp4" width="270" controls></video>
 
 All samples are 1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth".
+
+## The video type
+
+| | |
+|---|---|
+| **Length** | 15–25 seconds |
+| **Aspect** | 9:16 vertical (16:9 / 1:1 work too) |
+| **Visual** | Animated scenes — Hyperframes composition (brag-style, reads a project) or Remotion scene animations (flick-style, from a transcript) |
+| **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene — narration never bleeds into the next scene |
+| **Mix** | Music/SFX ducked underneath the voice (bed at 0.18–0.22, SFX at a supporting level) |
 
 ## Pipeline overview
 
