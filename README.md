@@ -11,9 +11,9 @@
 
 <div align="center">
 
-[![BanaoBot narrated promo — click to watch full video](examples/preview-banaobot.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/banaobot-narrated-9x16.mp4)
+[![BanaoBot narrated promo: click to watch full video](examples/preview-banaobot.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/banaobot-narrated-9x16.mp4)
 
-*☝️ Made with `/narrate` — BanaoBot · 20.5s · click to watch with sound*
+*☝️ Made with `/narrate`: BanaoBot · 20.5s · click to watch with sound*
 *"Your customers live on WhatsApp. Your business should answer there."*
 
 </div>
@@ -24,19 +24,19 @@
 
 | Command | Skill | What you get |
 |---|---|---|
-| `/narrate <site>` | `skills/narrate/` | ⭐ Brag-style narrated promo — the easiest command (sample above) |
+| `/narrate <site>` | `skills/narrate/` | ⭐ Brag-style narrated promo: the easiest command (sample above) |
 | `/brag --narrated` | `skills/brag/` + `references/narrated.md` | Same brag-style engine, invoked through `/brag` |
 | `/flick --narrated` | `skills/flick/` + `references/narrated.md` | Remotion scene animations voiced from a transcript |
 
 <div align="center">
 
-**`/brag --narrated` → PortfolioForge** · 18.0s — 3-scene Hyperframes composition, narration over a ducked music bed.
+**`/brag --narrated` → PortfolioForge** · 18.0s, 3-scene Hyperframes composition, narration over a ducked music bed.
 
-[![PortfolioForge brag narrated — click to watch full video](examples/preview-brag.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-brag-narrated-9x16.mp4)
+[![PortfolioForge brag narrated: click to watch full video](examples/preview-brag.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-brag-narrated-9x16.mp4)
 
-**`/flick --narrated` → PortfolioForge** · 24.2s — 4 Remotion scenes, transcript voiced over action-matched SFX.
+**`/flick --narrated` → PortfolioForge** · 24.2s, 4 Remotion scenes, transcript voiced over action-matched SFX.
 
-[![PortfolioForge flick narrated — click to watch full video](examples/preview-flick.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-flick-narrated-9x16.mp4)
+[![PortfolioForge flick narrated: click to watch full video](examples/preview-flick.gif)](https://github.com/adityapratap0077-cloud/narrateforge/raw/main/examples/portfolioforge-flick-narrated-9x16.mp4)
 
 *All samples 1080×1920 · H.264 + stereo AAC · voice Meta AI "Smooth"*
 
@@ -50,8 +50,8 @@
 |---|---|
 | **Length** | 15–25 seconds |
 | **Aspect** | 9:16 vertical (16:9 / 1:1 work too) |
-| **Visual** | Animated scenes — Hyperframes composition (brag-style, reads a project) or Remotion scene animations (flick-style, from a transcript) |
-| **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene — narration never bleeds into the next scene |
+| **Visual** | Animated scenes: Hyperframes composition (brag-style, reads a project) or Remotion scene animations (flick-style, from a transcript) |
+| **Voice** | One narration line per scene, TTS-voiced and fit-checked to its scene, narration never bleeds into the next scene |
 | **Mix** | Music/SFX ducked underneath the voice (bed at 0.18–0.22, SFX at a supporting level) |
 
 ## 🛠️ Pipeline overview
@@ -60,17 +60,17 @@
 narration script → TTS takes → fit-check → mix over visuals
 ```
 
-1. **Write** — one timed narration line per scene (~2.5–3 words/sec;
+1. **Write**: one timed narration line per scene (~2.5–3 words/sec;
    cold open → stakes → the turn → kicker). Template: `pipeline/write-narration.md`
-2. **Voice** — one TTS take per line: `pipeline/tts-lines.sh`
-3. **Fit-check** — every take verified with ffprobe against its scene
+2. **Voice**: one TTS take per line: `pipeline/tts-lines.sh`
+3. **Fit-check**: every take verified with ffprobe against its scene
    window (vox Stage 9 discipline: too long → re-voice faster ≤115% or
    shorten the line; too short → fine, visuals breathe). `pipeline/fit-check.sh`
-4. **Assemble** —
+4. **Assemble**:
    - Brag-style (Hyperframes): VO wired into the composition on high
-     track-indexes, music bed ducked, render, mix — `pipeline/compose-hyperframes.sh`
+     track-indexes, music bed ducked, render, mix: `pipeline/compose-hyperframes.sh`
    - Flick-style (Remotion): scenes concatenated, VO track built with
-     `adelay`/`apad`, mixed over scene SFX — `pipeline/flick-assemble.sh`
+     `adelay`/`apad`, mixed over scene SFX: `pipeline/flick-assemble.sh`
 
 Full stage-by-stage docs: [`pipeline/README.md`](pipeline/README.md).
 
@@ -80,7 +80,7 @@ Full stage-by-stage docs: [`pipeline/README.md`](pipeline/README.md).
 git clone https://github.com/adityapratap0077-cloud/narrateforge.git
 cd narrateforge
 
-# 1. write narration.txt — one line per scene (see pipeline/write-narration.md)
+# 1. write narration.txt: one line per scene (see pipeline/write-narration.md)
 # 2. list your scenes:
 cat > scene-list.txt <<'EOF'
 0.0 5.5
@@ -89,7 +89,7 @@ cat > scene-list.txt <<'EOF'
 17.5 24.2
 EOF
 
-# 3. voice the lines (bring your own TTS — see skills/tts-interface.md)
+# 3. voice the lines (bring your own TTS, see skills/tts-interface.md)
 ./pipeline/tts-lines.sh narration.txt my-video/
 
 # 4. fit-check every take against its scene window
@@ -113,22 +113,22 @@ The skills this pipeline was built from, copied faithfully:
 
 | Skill | What it contributes | Source / license |
 |---|---|---|
-| `skills/narrate/` | `/narrate` — the easy command for narrated videos | Original work by Aditya Pratap's studio — covered by this repo's MIT |
-| `skills/brag/` | `/brag` — launch video from project code via Hyperframes; `references/narrated.md` is the narrated-mode spec (VO wiring, ducking) | Original work by Aditya Pratap's studio — covered by this repo's MIT |
-| `skills/flick/` | `/flick` — transcript → Remotion scene animations; `references/narrated.md` is the transcript-voicing spec | Upstream [creatorberry/flick](https://github.com/creatorberry/flick) (MIT); local modifications (narrated mode) are this repo's |
-| `skills/vox-animation/` | The narration model: timed lines per scene, fit-check discipline, `assemble.sh` reference | Original studio skill — covered by this repo's MIT |
+| `skills/narrate/` | `/narrate`: the easy command for narrated videos | Original work by Aditya Pratap's studio, covered by this repo's MIT |
+| `skills/brag/` | `/brag`: launch video from project code via Hyperframes; `references/narrated.md` is the narrated-mode spec (VO wiring, ducking) | Original work by Aditya Pratap's studio, covered by this repo's MIT |
+| `skills/flick/` | `/flick`: transcript → Remotion scene animations; `references/narrated.md` is the transcript-voicing spec | Upstream [creatorberry/flick](https://github.com/creatorberry/flick) (MIT); local modifications (narrated mode) are this repo's |
+| `skills/vox-animation/` | The narration model: timed lines per scene, fit-check discipline, `assemble.sh` reference | Original studio skill, covered by this repo's MIT |
 | `skills/tts-interface.md` | Adapter doc for the platform TTS CLI used in the reference runs (not portable, not included) | — |
 
 ## 🎞️ Examples
 
-All three reference cuts (1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth") —
+All three reference cuts (1080×1920, H.264 + stereo AAC, voice Meta AI "Smooth"):
 embedded with posters in [Which skill makes what](#-which-skill-makes-what) above:
 
-- `examples/banaobot-narrated-9x16.mp4` (20.5s) — `/narrate` on BanaoBot:
+- `examples/banaobot-narrated-9x16.mp4` (20.5s): `/narrate` on BanaoBot:
   brag-style, 4 scenes, voiceover + ducked music, no captions.
-- `examples/portfolioforge-brag-narrated-9x16.mp4` (18.0s) — `/brag --narrated`:
+- `examples/portfolioforge-brag-narrated-9x16.mp4` (18.0s): `/brag --narrated`:
   3-scene Hyperframes composition for PortfolioForge, narration with music bed ducked to 0.2.
-- `examples/portfolioforge-flick-narrated-9x16.mp4` (24.2s) — `/flick --narrated`:
+- `examples/portfolioforge-flick-narrated-9x16.mp4` (24.2s): `/flick --narrated`:
   4 Remotion scenes for PortfolioForge, VO over action SFX.
 
 ## 📁 Repo layout
@@ -145,7 +145,7 @@ narrateforge/
     flick-assemble.sh  # flick-style assembly
     README.md          # stage-by-stage pipeline docs
   skills/              # the skills this pipeline is built from
-    narrate/           # /narrate — the easy command
+    narrate/           # /narrate: the easy command
     brag/              # /brag + narrated.md + audio.md
     flick/             # /flick + narrated.md
     vox-animation/     # narration model + assemble.sh
@@ -155,4 +155,4 @@ narrateforge/
 
 ## 📄 License
 
-MIT — see [LICENSE](LICENSE).
+MIT · see [LICENSE](LICENSE).
