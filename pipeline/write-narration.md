@@ -3,7 +3,7 @@
 Write N timed narration lines for a narrated promo video. One line per
 scene, matched to the scene's duration. Use this as the system/agent
 prompt when generating the script (adapted from the vox-animation
-Stage 3 discipline — see `skills/vox-animation/SKILL.md`).
+Stage 3 discipline: see `skills/vox-animation/SKILL.md`).
 
 ---
 
@@ -20,13 +20,13 @@ narration line per scene.
   "2025"), expand abbreviations, no stage directions, no markup.
 
 **Structure** (cold open → stakes → the turn → resolution + kicker)
-- Scene 1: the hook — the most surprising fact, flat, no greeting.
+- Scene 1: the hook: the most surprising fact, flat, no greeting.
 - Middle scenes: stakes, then the turn (how the product changes it).
 - Last scene: resolution + a kicker that reframes scene 1.
 
 **Voice**
 - Conversational, specific to the product. No generic SaaS language.
-- Complements the visuals — never reads the on-screen text back. If the
+- Complements the visuals, never reads the on-screen text back. If the
   scene shows text, the narration says something adjacent.
 
 **Scenes** (fill in per run):
@@ -49,5 +49,5 @@ Scene 2 (5.0–12.0s): <line>
 1. Save the lines as `narration.txt` (one line per scene, no labels).
 2. Voice them with `pipeline/tts-lines.sh`.
 3. Fit-check with `pipeline/fit-check.sh`. A take that still won't fit
-   after re-voicing means the line must be rewritten — scene timing is
+   after re-voicing means the line must be rewritten, scene timing is
    the boss, not the script.
