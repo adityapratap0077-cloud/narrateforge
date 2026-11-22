@@ -1,13 +1,13 @@
 # NarrateForge pipeline
 
 The end-to-end recipe for a **narrated promo video**: an animated visual
-track + a fit-checked TTS voiceover + a ducked music/SFX bed. No captions —
+track + a fit-checked TTS voiceover + a ducked music/SFX bed. No captions,
 narrated mode is voiceover only. This is the generalized form of the
 pipeline proven by the two reference demos in `examples/`.
 
 ## The video type
 
-- **Visual:** short (15–25s) animated scenes — either a Hyperframes
+- **Visual:** short (15–25s) animated scenes, either a Hyperframes
   composition (brag-style, reads a project site) or Remotion scene
   animations (flick-style, from a transcript).
 - **Audio:** one narration line per scene, voiced with TTS and timed to
@@ -24,13 +24,13 @@ pipeline proven by the two reference demos in `examples/`.
    flick-assemble.sh      → flick-style: concat scenes, mix VO → final
 ```
 
-### 1. Narration script — `write-narration.md`
+### 1. Narration script: `write-narration.md`
 
 Prompt template for writing N timed lines: ~2.5–3 words/second,
 cold open → stakes → the turn → kicker. Narration complements the
 visuals, never reads the on-screen text back.
 
-### 2. Voice the lines — `tts-lines.sh`
+### 2. Voice the lines: `tts-lines.sh`
 
 ```bash
 ./tts-lines.sh narration.txt <output-dir> [--voice <id>] [--language <code>]
@@ -39,7 +39,7 @@ visuals, never reads the on-screen text back.
 One mp3 per line into `<output-dir>/voice/`. Bring your own TTS that
 satisfies `skills/tts-interface.md`.
 
-### 3. Fit-check — `fit-check.sh`
+### 3. Fit-check: `fit-check.sh`
 
 ```bash
 ./fit-check.sh <output-dir>/voice scene-list.txt
@@ -47,11 +47,11 @@ satisfies `skills/tts-interface.md`.
 ```
 
 vox Stage 9 discipline: a take longer than (scene − 0.3s) must be
-re-voiced faster (≤115%) or the line shortened — narration never bleeds
+re-voiced faster (≤115%) or the line shortened, narration never bleeds
 into the next scene. Takes under 60% of the scene are fine (visuals
 breathe after the line lands).
 
-### 4a. Brag-style assembly — `compose-hyperframes.sh`
+### 4a. Brag-style assembly: `compose-hyperframes.sh`
 
 For Hyperframes compositions (the `/brag` skill path):
 
@@ -66,7 +66,7 @@ For Hyperframes compositions (the `/brag` skill path):
 
 Full spec: `skills/brag/references/narrated.md`.
 
-### 4b. Flick-style assembly — `flick-assemble.sh`
+### 4b. Flick-style assembly: `flick-assemble.sh`
 
 For Remotion scene animations (the `/flick` skill path). Scenes are
 never rebuilt for narration:
@@ -82,10 +82,10 @@ Full spec: `skills/flick/references/narrated.md`.
 
 - `ffmpeg` + `ffprobe` on PATH.
 - A working TTS per `skills/tts-interface.md`.
-- Hyperframes for the brag-style path (needs its own install — the
+- Hyperframes for the brag-style path (needs its own install, the
   `brag` skill's composition steps live in `skills/brag/`).
 - Remotion for the flick-style path (`skills/flick/` bootstrap installs
   Remotion, bundled FFmpeg, Whisper, yt-dlp).
 
-Demo-specific values (scene names, durations, music choice) are examples —
+Demo-specific values (scene names, durations, music choice) are examples,
 adapt `scene-list.txt` to your run.
