@@ -4,8 +4,8 @@ Opt-in voiceover for /flick. A plain `/flick` run never
 uses this: scenes render with action-matched SFX only, no VO,
 no background music (that rule is unchanged).
 
-Narrated mode voices the existing transcript — one TTS take per transcript
-segment — fit-checks each take against its scene duration (vox-animation
+Narrated mode voices the existing transcript, one TTS take per transcript
+segment, fit-checks each take against its scene duration (vox-animation
 Stage 9 discipline), then assembles a narrated cut from the already-rendered
 scenes. Scenes are never rebuilt for narration.
 
@@ -20,7 +20,7 @@ scenes. Scenes are never rebuilt for narration.
 
 ## 2. Voice the transcript lines
 
-One take per transcript segment, using the `tts` skill CLI — never
+One take per transcript segment, using the `tts` skill CLI, never
 edge-tts, never Piper:
 
 ```bash
