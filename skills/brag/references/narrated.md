@@ -23,7 +23,7 @@ After the storyboard is locked, write one narration line per scene into a
 - **Structure** (vox Stage 3): cold open (most surprising fact, flat, no
   greeting) → stakes → the turn → resolution + kicker that reframes scene 1.
 - **Complements the visuals, doesn't read them.** If the scene shows text on
-  screen, the narration says something adjacent — never the same words.
+  screen, the narration says something adjacent, never the same words.
 - Conversational, specific to the product. No generic SaaS language.
 
 Example for a 3-scene, 18s brag (scenes of 5s / 7s / 6s):
@@ -36,7 +36,7 @@ Scene 3 (12.0–18.0s): Download a standalone page, or share your link. Portfoli
 
 ## 2. Voice the lines (Step 4, before final assembly)
 
-Use the `tts` skill CLI — never edge-tts, never Piper. One take per line:
+Use the `tts` skill CLI, never edge-tts, never Piper. One take per line:
 
 ```bash
 mkdir -p <output-dir>/voice
@@ -49,7 +49,7 @@ tts speak --text "Your GitHub profile is already a portfolio. It's just not prin
   explicit user voice request.
 - `--language` must match the script language (default `en`).
 - Copy each take into `<output-dir>/composition/assets/voice/lineN.mp3`
-  (Hyperframes serves audio from the composition directory — see
+  (Hyperframes serves audio from the composition directory, see
   `references/audio.md` "Critical: copy audio files…").
 
 ### Fit-check (vox Stage 9 discipline)
@@ -60,7 +60,7 @@ Check every take with ffprobe against its scene's duration:
   Still too long → shorten the line, re-voice. Never let narration bleed
   into the next scene.
 - Take **shorter than 60% of the scene** → consider `--speed 90` or
-  lengthening the line. Otherwise fine — the line lands at the scene start
+  lengthening the line. Otherwise fine, the line lands at the scene start
   and the visuals breathe after it.
 - Record final durations in the plan; they drive the VO placement.
 
@@ -79,14 +79,14 @@ between overlapping audio (music stays at 10, SFX at 11+, VO at 20+).
 
 **Ducking:** while any VO plays, the music bed must sit low. Set the bed
 volume to **0.18–0.22** for the whole video when narrated (instead of the
-usual 0.3–0.4). No sidechain plugins — the static low bed plus a clear VO
+usual 0.3–0.4). No sidechain plugins, the static low bed plus a clear VO
 is the intended mix. Keep SFX sparse under narration; drop any SFX that
 fights the voice.
 
 ## 4. Delivery
 
 - `<output-dir>/brag-narrated.mp4` is the narrated deliverable (in addition
-  to the normal `brag.mp4` — always render the clean version too).
+  to the normal `brag.mp4`, always render the clean version too).
 - Poster and share copy are written from the clean render, as usual.
 - Note the voice used in `share-copy.txt` (e.g. `Voice: Meta AI Smooth
   (avocado_v2:MAI_03)`), so a rerun can match it.
