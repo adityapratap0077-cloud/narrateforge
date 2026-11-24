@@ -5,14 +5,14 @@ description: Make a narrated promo video (voiceover) for a website or project. U
 
 # /narrate
 
-One easy command for narrated videos. This command always narrates — voiceover over the video, no captions.
+One easy command for narrated videos. This command always narrates, voiceover over the video, no captions.
 
 ## Usage
 
-- `/narrate <site or project>` — brag-style narrated video (Hyperframes). This is the default style.
-- `/narrate brag <site or project>` — same, explicit.
-- `/narrate flick <site or project>` — flick-style narrated video (Remotion scene animations). If no transcript is supplied, write one from the site first.
-- `/narrate` with no target — ask what to make the video about.
+- `/narrate <site or project>`: brag-style narrated video (Hyperframes). This is the default style.
+- `/narrate brag <site or project>`: same, explicit.
+- `/narrate flick <site or project>`: flick-style narrated video (Remotion scene animations). If no transcript is supplied, write one from the site first.
+- `/narrate` with no target: ask what to make the video about.
 
 ## How it runs
 
@@ -25,7 +25,7 @@ One easy command for narrated videos. This command always narrates — voiceover
 ## Defaults
 
 - 9:16 vertical, ~20 seconds
-- Voice: "Smooth" (`avocado_v2:MAI_03`) via the tts skill — pick another voice only if asked
+- Voice: "Smooth" (`avocado_v2:MAI_03`) via the tts skill, pick another voice only if asked
 - Music bed ducked to 0.2 under narration, action-matched SFX kept
 
 Plain `/brag` and `/flick` without this command stay non-narrated.
