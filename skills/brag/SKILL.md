@@ -1,6 +1,6 @@
 ---
 name: brag
-description: Turn the current project website into a short, polished, shareable launch video using Hyperframes. Use when someone says "/brag", "let's brag about this", "make a launch video", "turn this into a video", or wants to share what they built. Reads the project code directly — no live URL or screenshots needed.
+description: Turn the current project website into a short, polished, shareable launch video using Hyperframes. Use when someone says "/brag", "let's brag about this", "make a launch video", "turn this into a video", or wants to share what they built. Reads the project code directly, no live URL or screenshots needed.
 ---
 
 # /brag
@@ -15,7 +15,7 @@ invocation contains `--narrated` (or the legacy `--voice` alias), set
 narration automatically and do not fall back to the normal no-voice workflow.
 Full pipeline: [references/narrated.md](references/narrated.md).
 
-**Standing user preference (2026-09-24):** a plain `/brag` run stays plain —
+**Standing user preference (2026-09-24):** a plain `/brag` run stays plain,
 no voiceover, no burned-in captions, no smart audio ducking. The "improved"
 upgrades (voiceover, timed captions, ducked music) are opt-in only: add them
 solely when the user explicitly asks for narration (or passes `--narrated` /
@@ -113,7 +113,7 @@ Scan the project directory and extract the information needed to plan the brag v
 
 Write `<output-dir>/brag-plan.md` (where `<output-dir>` is `brag-output/` or the timestamped variant chosen above). Answer the planning rubric. Commit to a creative angle. Write the beat-by-beat storyboard including scenes, text, timing, transitions, and SFX cues.
 
-When music is selected, include a compact `Music cue guidance` section: read the bundled track's cue preset from `<skill-dir>/assets/music/cues/` if present, otherwise note cues will be detected at composition time (any track now supports beat sync — see `references/audio.md`). Cue metadata is optional timing guidance only: story, readability, pacing, and product clarity stay primary.
+When music is selected, include a compact `Music cue guidance` section: read the bundled track's cue preset from `<skill-dir>/assets/music/cues/` if present, otherwise note cues will be detected at composition time (any track now supports beat sync, see `references/audio.md`). Cue metadata is optional timing guidance only: story, readability, pacing, and product clarity stay primary.
 
 When `--narrated` is on, also write a `Narration` section: one timed
 narration line per scene, vox-style (cold open → stakes → turn → kicker),
@@ -125,7 +125,7 @@ plain spoken text. See [references/narrated.md](references/narrated.md).
 
 ## Step 3: Hand off to Hyperframes
 
-**Read:** The Hyperframes domain skills — `hyperframes-core`, `hyperframes-animation`, `hyperframes-creative`, `hyperframes-keyframes`, `hyperframes-cli`. /brag is its own workflow: do not enter the `hyperframes` entry-point intent interview or route into its generic promo / launch-video workflow.
+**Read:** The Hyperframes domain skills: `hyperframes-core`, `hyperframes-animation`, `hyperframes-creative`, `hyperframes-keyframes`, `hyperframes-cli`. /brag is its own workflow: do not enter the `hyperframes` entry-point intent interview or route into its generic promo / launch-video workflow.
 **Read:** [references/step-3-compose.md](references/step-3-compose.md)
 **Read:** [references/audio.md](references/audio.md)
 
@@ -133,7 +133,7 @@ Write the composition brief and use Hyperframes to create the video implementati
 
 `/brag` owns the product angle, source material, storyboard, tone, format, audio selection, music cue guidance, and delivery expectations. Hyperframes owns the concrete composition structure, exact animation timing, animation mechanics, runtime choices, linting rules, and render workflow.
 
-**Gate:** `npx hyperframes check` passes with zero errors inside `<output-dir>/composition/` (the single browser gate before render — see hyperframes-cli for what it audits).
+**Gate:** `npx hyperframes check` passes with zero errors inside `<output-dir>/composition/` (the single browser gate before render, see hyperframes-cli for what it audits).
 
 ---
 
@@ -144,7 +144,7 @@ Write the composition brief and use Hyperframes to create the video implementati
 Validate, preview, render to `<output-dir>/brag.mp4`, pick the best poster frame into `<output-dir>/brag.jpg`, bake that poster as the video's frame 0 so it's the idle thumbnail everywhere, and write `<output-dir>/share-copy.txt`.
 
 When `--narrated` is on: voice the narration lines, fit-check takes,
-wire VO into the composition with the music bed ducked, render —
+wire VO into the composition with the music bed ducked, render,
 deliver `<output-dir>/brag-narrated.mp4` alongside the clean
 `brag.mp4`. Full pipeline: [references/narrated.md](references/narrated.md).
 
@@ -178,7 +178,7 @@ These apply to every brag video regardless of tone.
 
 **Short.** 15–25 seconds. Not one second more without a reason.
 
-**Readable.** Keep the pace high through motion and cuts, never by flashing text. Every line a viewer must read holds long enough to read it (short label ~0.8s settled; a sentence ~0.3s per word). Fast-in, then hold — never fast-in, then gone.
+**Readable.** Keep the pace high through motion and cuts, never by flashing text. Every line a viewer must read holds long enough to read it (short label ~0.8s settled; a sentence ~0.3s per word). Fast-in, then hold, never fast-in, then gone.
 
 **Specific.** The video must feel like it was made for this exact project, not any project.
 
