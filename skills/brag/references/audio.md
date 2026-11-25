@@ -27,7 +27,7 @@ Suggested plan notation:
 Audio-reactive treatment: subtle; use music RMS/bass to make the hero glow and product card presence breathe. No waveform/equalizer visuals.
 ```
 
-Hyperframes implementation note: follow the audio-reactive guidance owned by the `hyperframes-creative` skill (let that skill locate its own files), to extract per-frame audio data and sample it synchronously inside the composition timeline. The extraction helper ships with that skill — `/brag` does not provide it, so don't hardcode a path to it.
+Hyperframes implementation note: follow the audio-reactive guidance owned by the `hyperframes-creative` skill (let that skill locate its own files), to extract per-frame audio data and sample it synchronously inside the composition timeline. The extraction helper ships with that skill, `/brag` does not provide it, so don't hardcode a path to it.
 
 ---
 
@@ -73,23 +73,23 @@ assets/sfx/impact/impactBell_heavy_000.ogg
 assets/music/happy-beats-business-moves-vol-1-by-ende-dot-app.mp3
 ```
 
-Never use absolute paths (starting with `/Users/...`) — they will silently fail in the renderer.
+Never use absolute paths (starting with `/Users/...`), they will silently fail in the renderer.
 
 ---
 
-## SFX library — approved files
+## SFX library: approved files
 
 The family SFX (casino, impact, interface, ui) live directly under `sfx/`; the individual keypress set lives in `sfx/keyboard/`.
 
-Read `sfx-analysis.md` before choosing files — it lists safer picks by use case and flags files with high-frequency risk. Prefer low/medium HF risk for polished and repeated moments; reserve high-risk files for tiny isolated accents or chaotic tones.
+Read `sfx-analysis.md` before choosing files, it lists safer picks by use case and flags files with high-frequency risk. Prefer low/medium HF risk for polished and repeated moments; reserve high-risk files for tiny isolated accents or chaotic tones.
 
-### `keyboard/` — Individual keypress sounds
+### `keyboard/`: Individual keypress sounds
 
-32 CC0 single keypress WAV files (`keypress-001.wav` through `keypress-032.wav`). Each is a distinct key sound at a slightly different velocity and character. Use these for per-character typing animations — randomize across the set so repeated characters don't sound robotic.
+32 CC0 single keypress WAV files (`keypress-001.wav` through `keypress-032.wav`). Each is a distinct key sound at a slightly different velocity and character. Use these for per-character typing animations, randomize across the set so repeated characters don't sound robotic.
 
-**Source:** [Keyboard Soundpack #1](https://opengameart.org/content/keyboard-soundpack-1-typing-and-single-keystrokes) by unicae_games — CC0
+**Source:** [Keyboard Soundpack #1](https://opengameart.org/content/keyboard-soundpack-1-typing-and-single-keystrokes) by unicae_games, CC0
 
-### `interface/` — UI sounds
+### `interface/`: UI sounds
 
 | Files | Character | Use for |
 |---|---|---|
@@ -98,16 +98,16 @@ Read `sfx-analysis.md` before choosing files — it lists safer picks by use cas
 | `error_005–006.ogg` | Negative buzz | Comedic fail, wrong answer |
 | `switch_001–002.ogg`, `switch_004–007.ogg` | Toggle switch | Feature switching on, binary state |
 | `drop_001–003.ogg` | Soft drop | Element landing, gentle placement |
-| `bong_001.ogg` | Deep bell | Dramatic announcement — use sparingly |
+| `bong_001.ogg` | Deep bell | Dramatic announcement, use sparingly |
 | `select_008.ogg` | Selection click | Navigation, item focus |
 
-### `impact/` — Impact sounds
+### `impact/`: Impact sounds
 
 More physical and cinematic. Excellent for big moments and transitions.
 
 | Files | Character | Use for |
 |---|---|---|
-| `impactSoft_medium_000–004.ogg` | Medium soft thud | Major reveal, hard transition — safest family |
+| `impactSoft_medium_000–004.ogg` | Medium soft thud | Major reveal, hard transition, safest family |
 | `impactSoft_heavy_000–004.ogg` | Heavy soft thud | Comedic bonk, weight, silly moment |
 | `impactBell_heavy_000.ogg`, `_003.ogg`, `_004.ogg` | Deep resonant bell | Cinematic reveal, logo slam, dramatic moment |
 | `impactPunch_heavy_000–004.ogg` | Heavy punch | Aggressive beat, chaotic tone |
@@ -129,7 +129,7 @@ More physical and cinematic. Excellent for big moments and transitions.
 | `impactGlass_heavy_002.ogg` | Glass shatter | Chaotic hit |
 | `impactMining_001.ogg` | Mining strike | Industrial, heavy |
 
-### `casino/` — Card and chip sounds
+### `casino/`: Card and chip sounds
 
 Specific but great for swipe/deal/stack moments.
 
@@ -150,14 +150,14 @@ Specific but great for swipe/deal/stack moments.
 | `die-throw-1–4.ogg` | Single die thrown | Lighter random accent |
 | `cards-pack-open-1–2.ogg` | Pack opening | Reveal, product launch moment |
 
-### `ui/` — Clicks and switches
+### `ui/`: Clicks and switches
 
 | Files | Character | Use for |
 |---|---|---|
 | `click1–5.ogg` | Various click tones | Button tap, cleaner than interface clicks |
 | `mouseclick1.ogg` | Mouse click | Simulated cursor interaction |
 | `rollover1–2.ogg`, `rollover4–5.ogg` | Hover/rollover | Subtle hover feedback, very soft accent |
-| `switch1–38.ogg` (most variants) | Switch variants | Toggle, mode change — pick by character |
+| `switch1–38.ogg` (most variants) | Switch variants | Toggle, mode change, pick by character |
 
 ---
 
@@ -242,7 +242,7 @@ If the music file doesn't exist, skip it and notify the user after rendering.
 
 ### Beat and cue sources
 
-Beat sync needs a cue source. Three are available — use the richest one the environment supports. Beat sync now works on **any** track, not just bundled ones. The two any-track methods (2 and 3) have orthogonal requirements — option 2 needs Python, option 3 needs a recent Hyperframes — so when one is unavailable the other usually covers it.
+Beat sync needs a cue source. Three are available, use the richest one the environment supports. Beat sync now works on **any** track, not just bundled ones. The two any-track methods (2 and 3) have orthogonal requirements, option 2 needs Python, option 3 needs a recent Hyperframes, so when one is unavailable the other usually covers it.
 
 1. **Bundled track → precomputed preset (richest, instant, no deps).** The bundled tracks ship with cue metadata. Read the matching markdown summary, and pass the JSON path in `composition-brief.md`:
 
@@ -251,7 +251,7 @@ Beat sync needs a cue source. Three are available — use the richest one the en
 <skill-dir>/assets/music/cues/<track-stem>.music-cues.json
 ```
 
-2. **Any track → extended analysis (richest for custom tracks; needs Python, any Hyperframes version).** For a custom track — or to refresh a bundled one — run `analyze_music_cues.py` on the audio file. It produces the same rich cue JSON/Markdown for any track. Run it via `uv`, which auto-provisions the deps (`librosa`, `numpy`, `scipy`, `soundfile`) from `<skill-dir>/scripts/pyproject.toml` — no manual `pip install` needed:
+2. **Any track → extended analysis (richest for custom tracks; needs Python, any Hyperframes version).** For a custom track, or to refresh a bundled one, run `analyze_music_cues.py` on the audio file. It produces the same rich cue JSON/Markdown for any track. Run it via `uv`, which auto-provisions the deps (`librosa`, `numpy`, `scipy`, `soundfile`) from `<skill-dir>/scripts/pyproject.toml`, no manual `pip install` needed:
 
 ```bash
 uv run --project <skill-dir>/scripts \
@@ -260,7 +260,7 @@ uv run --project <skill-dir>/scripts \
   --output-md  <output-dir>/composition/assets/music/cues/<stem>.music-cues.md
 ```
 
-This is the fallback when `hyperframes beats` (option 3) is unavailable — e.g. an older pinned Hyperframes. If neither `uv` nor the Python deps are available, use option 3 instead.
+This is the fallback when `hyperframes beats` (option 3) is unavailable, e.g. an older pinned Hyperframes. If neither `uv` nor the Python deps are available, use option 3 instead.
 
 3. **Any track → `hyperframes beats` (simple, no Python; needs Hyperframes ≥ 0.6.99).** After the music is wired into the composition, run:
 
@@ -268,7 +268,7 @@ This is the fallback when `hyperframes beats` (option 3) is unavailable — e.g.
 npx hyperframes beats <output-dir>/composition
 ```
 
-It writes a per-track beat file: a beat grid with per-beat timing and a normalized `strength` (0-1), but no separate `strongCues` array — so derive "strong" beats by taking the highest-`strength` ones. (See the current hyperframes-cli `beats` guidance for the exact output path.) `beats` was added in Hyperframes 0.6.99; on an older pinned install it won't exist — fall back to option 2 (the script), or to the `unavailable` note below.
+It writes a per-track beat file: a beat grid with per-beat timing and a normalized `strength` (0-1), but no separate `strongCues` array, so derive "strong" beats by taking the highest-`strength` ones. (See the current hyperframes-cli `beats` guidance for the exact output path.) `beats` was added in Hyperframes 0.6.99; on an older pinned install it won't exist, fall back to option 2 (the script), or to the `unavailable` note below.
 
 The preset and `analyze_music_cues.py` share the rich schema:
 
